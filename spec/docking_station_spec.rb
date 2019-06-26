@@ -7,11 +7,17 @@ describe DockingStation do
 
   describe '#release_bike' do
     it 'creates a Bike class when method is called' do
-      expect(subject.release_bike).to be_an_instance_of(Bike)
+      station = DockingStation.new
+      station.available_bikes << "bike"
+      expect(station.release_bike).to be_an_instance_of(Bike)
     end
-    
+
     it 'releases working bikes' do
       expect(subject.release_bike).to be_working
+    end
+
+    it "raises an Error if no Bikes available" do
+      expect { subject.release_bike }.to raise_error "No Bikes Available"
     end
   end
 

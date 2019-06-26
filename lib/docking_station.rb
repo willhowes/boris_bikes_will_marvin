@@ -9,6 +9,7 @@ class DockingStation
   end
 
   def release_bike
+    fail "No Bikes Avaiable" unless !@available_bikes == []
     Bike.new
   end
 
