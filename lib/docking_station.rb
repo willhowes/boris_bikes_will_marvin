@@ -9,13 +9,12 @@ class DockingStation
   end
 
   def release_bike
-    fail "No Bikes Available" if @available_bikes == [] 
+    raise "No Bikes Available" if @available_bikes == [] 
     Bike.new
   end
 
   def receive_bike(bike)
     @available_bikes << bike
-    @available_bikes
   end
 
 end
