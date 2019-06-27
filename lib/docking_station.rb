@@ -6,7 +6,7 @@ class DockingStation
 
   def initialize
     @available_bikes = []
-    @capacity = 1
+    @capacity = 20
   end
 
   def release_bike
