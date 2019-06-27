@@ -10,8 +10,11 @@ class DockingStation
   end
 
   def release_bike
-    raise "No Bikes Available" if @available_bikes == []
-    Bike.new
+    if !empty?
+        @available_bikes.pop()
+    else
+      raise "Empty"
+  end
   end
 
   def full?
@@ -26,5 +29,9 @@ class DockingStation
       else
         @available_bikes << bike
       end
+    end
+
+    def empty?
+      @available_bikes.empty?
     end
 end

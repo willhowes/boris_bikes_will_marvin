@@ -4,7 +4,10 @@ describe DockingStation do
   it 'responds to release_bike' do
     expect(subject).to respond_to :release_bike
   end
-
+  it 'raises an error if docking station is empty' do
+    docking_station_3 = DockingStation.new
+    expect(docking_station_3.release_bike).to raise_error "Empty"
+  end
   describe '#release_bike' do
     subject(:station) do
       station = DockingStation.new
@@ -20,10 +23,10 @@ describe DockingStation do
       expect(station.release_bike).to be_working
     end
 
-    it "raises an Error if no Bikes available" do
-      new_station = DockingStation.new
-      expect { new_station.release_bike }.to raise_error "No Bikes Available"
-    end
+    # it "raises an Error if no Bikes available" do
+    #   new_station = DockingStation.new
+    #   expect { new_station.release_bike }.to raise_error "No Bikes Available"
+    # end
   end
 
   describe "#receive_bike" do
