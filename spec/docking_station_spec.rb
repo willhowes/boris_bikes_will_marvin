@@ -52,7 +52,7 @@ describe DockingStation do
 
   it "raises an Error after 20 tries to dock bike" do
     new_station_2 = DockingStation.new
-    20.times { new_station_2.dock(Bike.new) }
+    DockingStation::DEFAULT_CAPACITY.times { new_station_2.dock(Bike.new) }
     expect { new_station_2.dock(Bike.new) }.to raise_error "Docking Station full"
   end
 

@@ -1,37 +1,33 @@
+# frozen_string_literal: true
+
 DockingStation = Class.new
 
 class DockingStation
-
   attr_reader :bikes
+  DEFAULT_CAPACITY = 20
 
   def initialize
     @bikes = []
-    @capacity = 20
+    @capacity = DEFAULT_CAPACITY
   end
 
   def release_bike
-    if !empty?
-        @bikes.pop()
-    else
-      raise "Docking Station Empty"
+    fail 'Docking Station Empty' if empty?
+    @bikes.pop
   end
+
+  def dock(bike)
+    fail 'Docking Station full' if full?
+    @bikes << bike
   end
+
+  private
 
   def full?
-    if @bikes.length >= @capacity
-      true
-    end
+    true if @bikes.length >= @capacity
   end
 
-    def dock(bike)
-      if full?
-        raise "Docking Station full"
-      else
-        @bikes << bike
-      end
-    end
-
-    def empty?
-      @bikes.empty?
-    end
+  def empty?
+    @bikes.empty?
+  end
 end
