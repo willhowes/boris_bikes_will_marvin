@@ -25,11 +25,6 @@ describe DockingStation do
     it 'releases working bikes' do
       expect(station.release_bike).to be_working
     end
-
-    # it "raises an Error if no Bikes available" do
-    #   new_station = DockingStation.new
-    #   expect { new_station.release_bike }.to raise_error "No Bikes Available"
-    # end
   end
 
   describe '#dock' do
