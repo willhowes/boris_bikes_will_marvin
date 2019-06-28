@@ -3,7 +3,7 @@ require 'Bike'
 
 describe Bike do
   it 'responds to working?' do
-    expect(subject).to respond_to :working?
+    expect(subject.working?).to eq(true)
   end
   describe '#report_broken'
     bike = Bike.new

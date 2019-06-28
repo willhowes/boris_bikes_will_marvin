@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require './lib/docking_station.rb'
 
 describe DockingStation do
@@ -14,12 +12,12 @@ describe DockingStation do
   describe '#release_bike' do
     subject(:station) do
       station = DockingStation.new
-      station.dock(Bike.new)
+      station.dock(double(:bike))
       station
     end
 
     it 'creates a Bike class when method is called' do
-      expect(station.release_bike).to be_an_instance_of(Bike)
+      expect(station.release_bike).to be_an_instance_of(double(:bike))
     end
 
     it 'releases working bikes' do
@@ -34,14 +32,14 @@ describe DockingStation do
   end
 
   it "stores the user's bike" do
-    boris_bike = Bike.new
+    boris_bike = double(:bike)
     expect(subject.dock(boris_bike)).to include(boris_bike)
   end
 
   describe '@bikes' do
     it 'lists all of the available bikes at the station' do
       station = DockingStation.new
-      boris_bike = Bike.new
+      boris_bike = double(:bike)
       station.dock(boris_bike)
       expect(station.bikes).to eq([boris_bike])
     end
@@ -49,8 +47,8 @@ describe DockingStation do
 
   it 'raises an Error after 20 tries to dock bike' do
     new_station_2 = DockingStation.new
-    DockingStation::DEFAULT_CAPACITY.times { new_station_2.dock(Bike.new) }
-    expect { new_station_2.dock(Bike.new) }.to raise_error 'Docking Station full'
+    DockingStation::DEFAULT_CAPACITY.times { new_station_2.dock(double(:bike)) }
+    expect { new_station_2.dock(double(:bike)) }.to raise_error 'Docking Station full'
   end
 
   it 'check if argument given matches the capacity' do
@@ -65,7 +63,7 @@ describe DockingStation do
 
   it 'Does not release broken bikes' do
     station_5 = DockingStation.new
-    bike = Bike.new
+    bike = double(:bike)
     bike.report_broken
     station_5.dock(bike)
     expect{station_5.release_bike}.to raise_error "Bike broken"
