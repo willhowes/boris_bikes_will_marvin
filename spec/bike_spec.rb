@@ -5,9 +5,10 @@ describe Bike do
   it 'responds to working?' do
     expect(subject).to respond_to :working?
   end
-  describe '#broken'
+  describe '#report_broken'
     bike = Bike.new
+    bike.report_broken
     it 'report bike as broken' do
-      expect(bike.broken).to eq true
+      expect(bike.broken?).to eq true
     end
 end

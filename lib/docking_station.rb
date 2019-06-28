@@ -13,6 +13,7 @@ class DockingStation
 
   def release_bike
     fail 'Docking Station Empty' if empty?
+    fail "Bike broken" if @bikes.last.broken?
     @bikes.pop
   end
 
